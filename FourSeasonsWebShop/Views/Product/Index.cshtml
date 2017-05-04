@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+@using FourSeasonsWebShop.Models 
+
+<h2>Store</h2>
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+    <tr>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Buy</th>
+
+    </tr>
+    @foreach (Item i in ViewBag.listProducts)
+    {
+        <tr>
+
+        <td>@i.ItemId</td>
+        <td>@i.CategoryId</td>
+        <td>@i.ProduceId</td>
+        <td>@i.Title</td>
+        <td>@i.Price</td>
+        <td>@i.ItemArtUrl</td>
+       <td align="center">@Html.ActionLink("Order Now","OrderNow", "ShoppingCart", new { id = i.ItemId}, null)</td>
+
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+}
+@using FourSeasonsWebShop.Controllers
+<h2>Cart</h2>
+
+<table cellpadding="2" cellspacing="2" border="1">
+
+    <tr>
+        <th>Option</th>
+        <th>Id</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Sub Total</th>
+
+    </tr>
+
+    @*@{
+        int s = 0; 
+     }*@
+
+    @foreach(Product product in (List<Product>)Session["cart"])
+    {
+        //s += product.It.Price * product.Quantity;
+        <tr>
+            <td>@Html.ActionLink("Delete", "Delete", "ShoppingCart", new {id = product.It.ItemId}, null)</td>
+            <td>@product.It.ItemId</td>
+            <td>@product.It.CategoryId</td>
+            <td>@product.It.ProduceId</td>
+            <td>@product.It.Title</td>
+            <td>@product.It.Price</td>
+            <td>@product.It.ItemArtUrl</td>
+
+            <td>@product.Quantity</td>
+            <td>@product.It.Price * product.Quantity</td>
+        </tr>
+    }
+
+     <tr>
+
+         <td align="right" colspan="5">Sum</td>
+         @*<td>@s</td>*@
+     </tr>
+
+</table>
+<br /><br />
+@Html.ActionLink("Continue Shopping", "Index", "Product")

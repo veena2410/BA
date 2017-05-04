@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FourSeasonDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="int" Nullable="false" />
+          <Property Name="CartId" Type="varchar" MaxLength="50" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="DateCreated" Type="date" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="text" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="ProduceId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="50" />
+          <Property Name="Price" Type="int" />
+          <Property Name="ItemArtUrl" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="150" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Total" Type="varchar" MaxLength="50" />
+          <Property Name="OrderDate" Type="date" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Producers">
+          <Key>
+            <PropertyRef Name="ProducerId" />
+          </Key>
+          <Property Name="ProducerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="ShoppingCardId" />
+          </Key>
+          <Property Name="ShoppingCardId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cart_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Producers">
+          <End Role="Producers" Type="Self.Producers" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producers">
+              <PropertyRef Name="ProducerId" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ProduceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FourSeasonDBModelStoreContainer">
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producers" EntityType="Self.Producers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ShoppingCart" EntityType="Self.ShoppingCart" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cart_Items" Association="Self.FK_Cart_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Categories" Association="Self.FK_Items_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Producers" Association="Self.FK_Items_Producers">
+            <End Role="Producers" EntitySet="Producers" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FourSeasonDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FourSeasonsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="FourSeasonDBModel.Category" />
+          <EntitySet Name="Items" EntityType="FourSeasonDBModel.Item" />
+          <EntitySet Name="Producers" EntityType="FourSeasonDBModel.Producer" />
+          <EntitySet Name="ShoppingCarts" EntityType="FourSeasonDBModel.ShoppingCart" />
+          <AssociationSet Name="FK_Items_Categories" Association="FourSeasonDBModel.FK_Items_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_Producers" Association="FourSeasonDBModel.FK_Items_Producers">
+            <End Role="Producer" EntitySet="Producers" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <EntitySet Name="Carts" EntityType="FourSeasonDBModel.Cart" />
+          <EntitySet Name="Orders" EntityType="FourSeasonDBModel.Order" />
+          <EntitySet Name="OrderDetails" EntityType="FourSeasonDBModel.OrderDetail" />
+          <AssociationSet Name="FK_Cart_Items" Association="FourSeasonDBModel.FK_Cart_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_Order" Association="FourSeasonDBModel.FK_OrderDetail_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="FourSeasonDBModel.FK_Items_Categories" FromRole="Category" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="ProduceId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="ItemArtUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Category" Relationship="FourSeasonDBModel.FK_Items_Categories" FromRole="Item" ToRole="Category" />
+          <NavigationProperty Name="Producer" Relationship="FourSeasonDBModel.FK_Items_Producers" FromRole="Item" ToRole="Producer" />
+          <NavigationProperty Name="Carts" Relationship="FourSeasonDBModel.FK_Cart_Items" FromRole="Item" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Producer">
+          <Key>
+            <PropertyRef Name="ProducerId" />
+          </Key>
+          <Property Name="ProducerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Items" Relationship="FourSeasonDBModel.FK_Items_Producers" FromRole="Producer" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="ShoppingCart">
+          <Key>
+            <PropertyRef Name="ShoppingCardId" />
+          </Key>
+          <Property Name="ShoppingCardId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Items_Categories">
+          <End Type="FourSeasonDBModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="FourSeasonDBModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_Producers">
+          <End Type="FourSeasonDBModel.Producer" Role="Producer" Multiplicity="0..1" />
+          <End Type="FourSeasonDBModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producer">
+              <PropertyRef Name="ProducerId" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ProduceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="RecordId" />
+          </Key>
+          <Property Name="RecordId" Type="Int32" Nullable="false" />
+          <Property Name="CartId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Item" Relationship="FourSeasonDBModel.FK_Cart_Items" FromRole="Cart" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Total" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OrderDetails" Relationship="FourSeasonDBModel.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="OrderDetailId" />
+          </Key>
+          <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Order" Relationship="FourSeasonDBModel.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK_Cart_Items">
+          <End Type="FourSeasonDBModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="FourSeasonDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_Order">
+          <End Type="FourSeasonDBModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="FourSeasonDBModel.OrderDetail" Role="OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="OrderId" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FourSeasonDBModelStoreContainer" CdmEntityContainer="FourSeasonsEntities">
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="ItemArtUrl" ColumnName="ItemArtUrl" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProduceId" ColumnName="ProduceId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producers">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.Producer">
+              <MappingFragment StoreEntitySet="Producers">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProducerId" ColumnName="ProducerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ShoppingCarts">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.ShoppingCart">
+              <MappingFragment StoreEntitySet="ShoppingCart">
+                <ScalarProperty Name="ShoppingCardId" ColumnName="ShoppingCardId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CartId" ColumnName="CartId" />
+                <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="FourSeasonDBModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="OrderDetailId" ColumnName="OrderDetailId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
