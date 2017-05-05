@@ -17,25 +17,33 @@ namespace FourSeasonsWebShop.Controllers
         // GET: Categories
         public ActionResult Index()
         {
+            
             return View(db.Categories.ToList());
         }
 
-       
+        public ActionResult Browse(string category)
+        {
+            var categoryModel = db.Categories.Include("Items")
+            .Single(c => c.Name == category);
+
+            return View(categoryModel);
+        }
+
 
         // GET: Categories/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Category category = db.Categories.Find(id);
-            if (category == null)
-            {
-                return HttpNotFound();
-            }
-            return View(category);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Category category = db.Categories.Find(id);
+        //    if (category == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(category);
+        //}
 
         // GET: Categories/Create
         public ActionResult Create()

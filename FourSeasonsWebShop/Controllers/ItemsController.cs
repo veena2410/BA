@@ -15,7 +15,7 @@
 //        private FourSeasonsEntities db = new FourSeasonsEntities();
 
 //        // GET: Items
-//       [Authorize(Users = "test@fourseasons.com")] //KODE: test123;
+//        [Authorize(Users = "test@fourseasons.com")] //KODE: test123;
 //        public ActionResult Index()
 //        {
 
@@ -32,20 +32,20 @@
 
 
 
-//        // GET: Items/Details/5
-//        public ActionResult Details(int? id)
-//        {
-//            if (id == null)
-//            {
-//                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-//            }
-//            Product item = db.Items.Find(id);
-//            if (item == null)
-//            {
-//                return HttpNotFound();
-//            }
-//            return View(item);
-//        }
+//        //// GET: Items/Details/5
+//        //public ActionResult Details(int? id)
+//        //{
+//        //    if (id == null)
+//        //    {
+//        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+//        //    }
+//        //    Product item = db.Items.Find(id);
+//        //    if (item == null)
+//        //    {
+//        //        return HttpNotFound();
+//        //    }
+//        //    return View(item);
+//        //}
 
 //        // GET: Items/Create
 //        public ActionResult Create()

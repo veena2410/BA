@@ -13,7 +13,17 @@ namespace FourSeasonsWebShop.Controllers
        
         public ActionResult Index()
         {
-            return View();
+            if (Session["cart"] == null)
+            {
+                List<Product> cart = new List<Product>();
+                Session["cart"] = cart;
+            }
+            
+                //List<Product> cart = (List<Product>)Session["cart"];
+                //Session["cart"] = cart;
+            
+            return View("Cart");
+            
         }
 
         private int isExisting(int id)
@@ -25,6 +35,8 @@ namespace FourSeasonsWebShop.Controllers
             return -1;
             
         }
+
+
 
         public ActionResult Delete(int id)
         {

@@ -200,6 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Items1Controller.cs" />
     <Compile Include="Controllers\Product.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -308,7 +309,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -357,6 +360,14 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
     <Content Include="Views\ShoppingCart\Cart.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Producers\AllBrands.cshtml" />
+    <Content Include="Views\Categories\Browse.cshtml" />
+    <Content Include="Views\Items1\Create.cshtml" />
+    <Content Include="Views\Items1\Delete.cshtml" />
+    <Content Include="Views\Items1\Details.cshtml" />
+    <Content Include="Views\Items1\Edit.cshtml" />
+    <Content Include="Views\Items1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

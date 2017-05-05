@@ -10,114 +10,116 @@ using FourSeasonsWebShop.Models;
 
 namespace FourSeasonsWebShop.Controllers
 {
-    public class ProducersController : Controller
+    public class Items1Controller : Controller
     {
         private FourSeasonsEntities db = new FourSeasonsEntities();
 
-        // GET: Producers
+        // GET: Items1
         public ActionResult Index()
         {
-            return View(db.Producers.ToList());
+            var items = db.Items.Include(i => i.Category).Include(i => i.Producer);
+            return View(items.ToList());
         }
 
-
-        // LIST OF BRANDS
-        public ActionResult AllBrands()
-        {
-            return View(db.Producers.ToList());
-        }
-
-        // GET: Producers/Details/5
+        // GET: Items1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
-            if (producer == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(producer);
+            return View(item);
         }
 
-        // GET: Producers/Create
+        // GET: Items1/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
+            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name");
             return View();
         }
 
-        // POST: Producers/Create
+        // POST: Items1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProducerId,Name")] Producer producer)
+        public ActionResult Create([Bind(Include = "ItemId,CategoryId,ProduceId,Title,Price,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Producers.Add(producer);
+                db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(producer);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            return View(item);
         }
 
-        // GET: Producers/Edit/5
+        // GET: Items1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
-            if (producer == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(producer);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            return View(item);
         }
 
-        // POST: Producers/Edit/5
+        // POST: Items1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProducerId,Name")] Producer producer)
+        public ActionResult Edit([Bind(Include = "ItemId,CategoryId,ProduceId,Title,Price,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producer).State = EntityState.Modified;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(producer);
+            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            return View(item);
         }
 
-        // GET: Producers/Delete/5
+        // GET: Items1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
-            if (producer == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return View(producer);
+            return View(item);
         }
 
-        // POST: Producers/Delete/5
+        // POST: Items1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producer producer = db.Producers.Find(id);
-            db.Producers.Remove(producer);
+            Item item = db.Items.Find(id);
+            db.Items.Remove(item);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

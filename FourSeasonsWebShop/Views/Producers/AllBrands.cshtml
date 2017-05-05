@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FourSeasonsWebShop.Models.Producer>
+
+@{
+    ViewBag.Title = "AllBrands";
+}
+
+<h2>All Brands</h2>
+
+<table class="table">
+    <tr>
+        <th>Logo</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>LinkTest</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>Logo here</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink(item.Name, "Profile", new { id = item.ProducerId })
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.ProducerId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProducerId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProducerId })*@
+            </td>
+        </tr>
+    }
+
+</table>
+

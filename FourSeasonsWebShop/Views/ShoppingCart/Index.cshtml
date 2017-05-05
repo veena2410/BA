@@ -2,6 +2,56 @@
 @{
     ViewBag.Title = "Index";
 }
+@using FourSeasonsWebShop.Controllers
 
-<h2>Index</h2>
+<h2>Cart</h2>
 
+<table class="table">
+
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+
+        <th>Image</th>
+
+        <th>Category</th>
+        <th>Brand</th>
+
+        <th>Price</th>
+
+        <th>Quantity</th>
+        <th>Sub Total</th>
+        <th>Option</th>
+    </tr>
+
+    @*@{
+           int s = 0;
+        }*@
+
+    @foreach (Product product in (IEnumerable<Product>)ViewBag.listProducts)
+    {
+        //s += product.It.Price * product.Quantity;
+        <tr>
+            <td>@product.It.ItemId</td>
+            <td>@product.It.Title</td>
+            <td>@product.It.ItemArtUrl</td>
+
+            <td>@product.It.Category.Name</td>
+            <td>@product.It.Producer.Name</td>
+
+            <td>@product.It.Price</td>
+
+
+            <td>@product.Quantity</td>
+            <td>@product.It.Price * product.Quantity</td>
+            <td>@Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = product.It.ItemId }, null)</td>
+
+        </tr>
+    }
+
+
+
+
+</table>
+<br /><br />
+@Html.ActionLink("Continue Shopping", "Index", "Product")

@@ -4,31 +4,34 @@
 }
 @using FourSeasonsWebShop.Models 
 
-<h2>Store!</h2>
+<h2>Products // What Is In Store</h2>
 
-<table cellpadding="2" cellspacing="2" border="1">
+<table class="table">
 
     <tr>
-        <th>Id</th>
+        <th>Item Number</th>
+        <th>Image</th>
+        
+        <th>Title</th>
         <th>Category</th>
         <th>Brand</th>
-        <th>Title</th>
+        
         <th>Price</th>
-        <th>Image</th>
+        
         <th>Buy</th>
 
     </tr>
     @foreach (Item i in ViewBag.listProducts)
     {
         <tr>
-
-        <td>@i.ItemId</td>
-        <td>@i.CategoryId</td>
-        <td>@i.ProduceId</td>
-        <td>@i.Title</td>
-        <td>@i.Price</td>
-        <td>@i.ItemArtUrl</td>
-       <td align="center">@Html.ActionLink("Order Now","OrderNow", "ShoppingCart", new { id = i.ItemId}, null)</td>
+            <td>@i.ItemId</td>
+            <td>@i.ItemArtUrl</td>
+           
+            <td>@i.Title</td>
+            <td>@i.Category.Name</td>
+            <td>@i.Producer.Name</td>
+            <td>@i.Price</td>
+            <td>@Html.ActionLink("Order Now", "OrderNow", "ShoppingCart", new { id = i.ItemId }, null)</td>
 
         </tr>
     }

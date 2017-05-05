@@ -6,8 +6,8 @@
     <h1>4 Seasons</h1>
     <p class="lead">
 
-        Customer: @Html.ActionLink("Store", "CustomerIndex", "Items"), Order, Cart, Previous Orders, All Brands, Brands profiles, Categories list, Categories pages <br />
-        Brand: Edit products, create products, create profile, edit profile <br />
+        Customer: @Html.ActionLink("Store", "Index", "Product"), Order, @Html.ActionLink("Cart", "Index", "ShoppingCart"), Previous Orders, @Html.ActionLink("Brands", "AllBrands", "Producers"), @Html.ActionLink("Categories", "Index", "Categories") <br />
+        Brand: @Html.ActionLink("View & Edit Products", "Index", "Items1"), @Html.ActionLink("Upload New Product", "Create", "Items1"), create profile, edit profile <br />
         Manager: <br />
     </p>
     <p><a href="http://asp.net" class="btn btn-primary btn-lg">Click here to read more &raquo;</a></p>

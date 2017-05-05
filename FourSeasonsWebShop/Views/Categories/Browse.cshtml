@@ -4,14 +4,15 @@
     ViewBag.Title = "Browse";
 }
 
+
 <h2>Browsing Category: @Model.Name</h2>
 
 <ul>
-    @foreach (var item in Model.Items)
+    @foreach (var item in Model.Items) { 
         <li>
 
             @item.Title
 
         </li>
-
-</ul>
+    } 
+    </ul>
