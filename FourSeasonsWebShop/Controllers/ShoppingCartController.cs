@@ -77,5 +77,10 @@ namespace FourSeasonsWebShop.Controllers
             return View("Cart");
         }
 
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetail());
+        }
+
     }
 }

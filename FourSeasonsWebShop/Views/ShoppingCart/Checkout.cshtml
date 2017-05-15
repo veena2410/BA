@@ -1,0 +1,38 @@
+﻿@model FourSeasonsWebShop.Models.ShippingDetail
+
+@{
+    ViewBag.Title = "Checkout";
+}
+
+<h2>Checkout</h2>
+<p>Please enter your details here</p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Test</h4>
+       
+       
+        <div class="form-group">
+            
+            <label>Name</label>
+            @Html.TextBoxFor(x=> x.Name, new { @class = "form-control"})
+
+
+            <label>Email</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+
+            <label>Address</label>
+            @Html.TextBoxFor(x => x.Address, new { @class = "form-control" })
+           
+        </div>
+
+        <div class="text-center">
+            <input class="btn btn-primary" type="submit" value="Complete Order" />
+        </div>
+
+    </div>
+
+}

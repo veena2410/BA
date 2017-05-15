@@ -16,6 +16,9 @@
         <EntityTypeShape EntityType="FourSeasonDBModel.OrderDetail" Width="1.5" PointX="8.625" PointY="4.75" />
         <AssociationConnector Association="FourSeasonDBModel.FK_Cart_Items" />
         <AssociationConnector Association="FourSeasonDBModel.FK_OrderDetail_Order" />
+        <EntityTypeShape EntityType="FourSeasonDBModel.ShippingDetail" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="FourSeasonDBModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="FourSeasonDBModel.User" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

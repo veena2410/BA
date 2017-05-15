@@ -197,6 +197,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Binders\CartModelBinder.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +221,9 @@
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\OrderDetail.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShippingDetail.cs">
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Shopping.cs" />
@@ -252,6 +257,12 @@
       <DependentUpon>StoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShoppingStoreEntities.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>StoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -368,6 +379,11 @@
     <Content Include="Views\Items1\Details.cshtml" />
     <Content Include="Views\Items1\Edit.cshtml" />
     <Content Include="Views\Items1\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\Checkout.cshtml" />
+    <Content Include="Views\Users\Register.cshtml" />
+    <Content Include="Views\Users\LogIn.cshtml" />
+    <Content Include="Views\Users\LoggedIn.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
