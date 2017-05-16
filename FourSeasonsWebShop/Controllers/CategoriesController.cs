@@ -21,13 +21,13 @@ namespace FourSeasonsWebShop.Controllers
             return View(db.Categories.ToList());
         }
 
-        public ActionResult Browse(string category)
-        {
-            var categoryModel = db.Categories.Include("Items")
-            .Single(c => c.Name == category);
+        //public ActionResult Browse(string category)
+        //{
+        //    var categoryModel = db.Categories.Include("Items")
+        //    .Single(c => c.Name == category);
 
-            return View(categoryModel);
-        }
+        //    return View(categoryModel);
+        //}
 
 
         // GET: Categories/Details/5

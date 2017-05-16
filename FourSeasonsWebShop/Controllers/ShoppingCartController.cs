@@ -19,8 +19,6 @@ namespace FourSeasonsWebShop.Controllers
                 Session["cart"] = cart;
             }
             
-                //List<Product> cart = (List<Product>)Session["cart"];
-                //Session["cart"] = cart;
             
             return View("Cart");
             
@@ -77,10 +75,10 @@ namespace FourSeasonsWebShop.Controllers
             return View("Cart");
         }
 
-        public ViewResult Checkout()
-        {
-            return View(new ShippingDetail());
-        }
+        //public ViewResult Checkout()
+        //{
+        //    return View(new ShippingDetail());
+        //}
 
     }
 }

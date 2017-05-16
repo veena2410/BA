@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="690b048087454557ba2ecb10c8ea7d51" Name="Diagram1">
+      <Diagram DiagramId="690b048087454557ba2ecb10c8ea7d51" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="FourSeasonDBModel.Category" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="FourSeasonDBModel.Item" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="FourSeasonDBModel.Producer" Width="1.5" PointX="5.125" PointY="1.125" />

@@ -14,14 +14,14 @@ namespace FourSeasonsWebShop.Controllers
     {
         private FourSeasonsEntities db = new FourSeasonsEntities();
 
-        // GET: Items1
+       
         public ActionResult Index()
         {
             var items = db.Items.Include(i => i.Category).Include(i => i.Producer);
             return View(items.ToList());
         }
 
-        // GET: Items1/Details/5
+       //Anvendes ikke
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +36,7 @@ namespace FourSeasonsWebShop.Controllers
             return View(item);
         }
 
-        // GET: Items1/Create
+        // Create
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
@@ -44,9 +44,8 @@ namespace FourSeasonsWebShop.Controllers
             return View();
         }
 
-        // POST: Items1/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Create
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ItemId,CategoryId,ProduceId,Title,Price,ItemArtUrl")] Item item)
@@ -63,7 +62,7 @@ namespace FourSeasonsWebShop.Controllers
             return View(item);
         }
 
-        // GET: Items1/Edit/5
+        // Edit
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,9 +79,7 @@ namespace FourSeasonsWebShop.Controllers
             return View(item);
         }
 
-        // POST: Items1/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ItemId,CategoryId,ProduceId,Title,Price,ItemArtUrl")] Item item)
@@ -98,7 +95,7 @@ namespace FourSeasonsWebShop.Controllers
             return View(item);
         }
 
-        // GET: Items1/Delete/5
+        //Delete
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +110,7 @@ namespace FourSeasonsWebShop.Controllers
             return View(item);
         }
 
-        // POST: Items1/Delete/5
+        // POST: Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
