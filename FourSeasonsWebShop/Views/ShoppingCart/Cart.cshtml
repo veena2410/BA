@@ -3,7 +3,9 @@
     ViewBag.Title = "Cart";
 }
 @using FourSeasonsWebShop.Controllers
-<h2>Cart</h2>
+<h2>Cart
+   
+    </h2>
 
 <table class="table">
 
@@ -33,7 +35,13 @@
         <tr>
             <td>@product.It.ItemId</td>
             <td>@product.It.Title</td>
-              <td>@product.It.ItemArtUrl</td>
+              <td>@*@product.It.ItemArtUrl*@
+            
+                  <a href="@Url.Content(product.It.ItemArtUrl)">
+                      <img src="@Url.Content(product.It.ItemArtUrl)" height="80" width="100" />
+                  </a>
+
+            </td>
             
             <td>@product.It.Category.Name</td>
             <td>@product.It.Producer.Name</td>
@@ -42,10 +50,12 @@
             
 
             <td>@product.Quantity</td>
-            <td>@product.It.Price * product.Quantity</td>
+            <td>@(product.It.Price * product.Quantity)</td>
             <td>@Html.ActionLink("Delete", "Delete", "ShoppingCart", new { id = product.It.ItemId }, null)</td>
-
+            
         </tr>
+
+       
     }
 
  

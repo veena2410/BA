@@ -17,14 +17,18 @@ else
 {
     <ul class="nav navbar-nav navbar-right">
 
-        <li>@Html.ActionLink("My Account", "MyAccount", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-        <li>@Html.ActionLink("Cart()", "Index", "ShoppingCart", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@*@Html.ActionLink("My Account", "MyAccount", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })*@</li>
+        <li>@Html.ActionLink("Cart", "Index", "ShoppingCart", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 
         <li>@Html.ActionLink("Wish List", "WishList", "ShoppingCart", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
 
 
         <li>@*@Html.ActionLink("Cart", "Index", "ShoppingCart")*@</li>
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Users", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "LogIn", "Users", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    
+        <li>@Html.ActionLink("Upload Item", "Create", "Items1", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("View Items", "Index", "Items1", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
     </ul>
 }

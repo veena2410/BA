@@ -25,7 +25,14 @@
     {
         <tr>
             <td>@i.ItemId</td>
-            <td>@i.ItemArtUrl</td>
+            <td>
+                
+                @*@i.ItemArtUrl*@
+            
+                <a href="@Url.Content(i.ItemArtUrl)">
+                    <img src="@Url.Content(i.ItemArtUrl)" height="160" width="200" />
+                </a>
+            </td>
            
             <td>@i.Title</td>
             <td>@i.Category.Name</td>
