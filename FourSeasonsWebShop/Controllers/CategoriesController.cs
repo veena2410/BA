@@ -12,13 +12,13 @@ namespace FourSeasonsWebShop.Controllers
 {
     public class CategoriesController : Controller
     {
-        private FourSeasonsEntities db = new FourSeasonsEntities();
+        private FourSeasonsEntities fe = new FourSeasonsEntities();
 
         // GET: Categories
         public ActionResult Index()
         {
             
-            return View(db.Categories.ToList());
+            return View(fe.Categories.ToList());
         }
 
         //public ActionResult Browse(string category)
@@ -60,8 +60,8 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                fe.Categories.Add(category);
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +75,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            Category category = fe.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -92,8 +92,8 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                fe.Entry(category).State = EntityState.Modified;
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -106,7 +106,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            Category category = fe.Categories.Find(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -119,9 +119,9 @@ namespace FourSeasonsWebShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            Category category = fe.Categories.Find(id);
+            fe.Categories.Remove(category);
+            fe.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -129,7 +129,7 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                fe.Dispose();
             }
             base.Dispose(disposing);
         }

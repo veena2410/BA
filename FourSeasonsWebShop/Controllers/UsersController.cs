@@ -65,9 +65,11 @@ namespace FourSeasonsWebShop.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Username og Password is wrong");
+                    
                 }
             }
             return View(); 
+
         }
 
         public ActionResult LoggedIn()

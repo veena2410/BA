@@ -23,10 +23,10 @@ namespace FourSeasonsWebShop.Controllers
             set { quantity = value; }
         }
 
-        public Product()
-        {
+        //public Product()
+        //{
 
-        }
+        //}
 
         public Product(Item item, int quantity)
         {

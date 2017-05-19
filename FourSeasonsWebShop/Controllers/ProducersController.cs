@@ -12,19 +12,19 @@ namespace FourSeasonsWebShop.Controllers
 {
     public class ProducersController : Controller
     {
-        private FourSeasonsEntities db = new FourSeasonsEntities();
+        private FourSeasonsEntities fe = new FourSeasonsEntities();
 
         // GET: Producers
         public ActionResult Index()
         {
-            return View(db.Producers.ToList());
+            return View(fe.Producers.ToList());
         }
 
 
         // LIST OF BRANDS
         public ActionResult AllBrands()
         {
-            return View(db.Producers.ToList());
+            return View(fe.Producers.ToList());
         }
 
         // GET: Producers/Details/5
@@ -34,7 +34,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
+            Producer producer = fe.Producers.Find(id);
             if (producer == null)
             {
                 return HttpNotFound();
@@ -57,8 +57,8 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Producers.Add(producer);
-                db.SaveChanges();
+                fe.Producers.Add(producer);
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -72,7 +72,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
+            Producer producer = fe.Producers.Find(id);
             if (producer == null)
             {
                 return HttpNotFound();
@@ -89,8 +89,8 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producer).State = EntityState.Modified;
-                db.SaveChanges();
+                fe.Entry(producer).State = EntityState.Modified;
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(producer);
@@ -103,7 +103,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Producer producer = db.Producers.Find(id);
+            Producer producer = fe.Producers.Find(id);
             if (producer == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,9 @@ namespace FourSeasonsWebShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Producer producer = db.Producers.Find(id);
-            db.Producers.Remove(producer);
-            db.SaveChanges();
+            Producer producer = fe.Producers.Find(id);
+            fe.Producers.Remove(producer);
+            fe.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -126,7 +126,7 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                fe.Dispose();
             }
             base.Dispose(disposing);
         }

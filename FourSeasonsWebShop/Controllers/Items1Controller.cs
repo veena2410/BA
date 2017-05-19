@@ -12,12 +12,12 @@ namespace FourSeasonsWebShop.Controllers
 {
     public class Items1Controller : Controller
     {
-        private FourSeasonsEntities db = new FourSeasonsEntities();
+        private FourSeasonsEntities fe = new FourSeasonsEntities();
 
        
         public ActionResult Index()
         {
-            var items = db.Items.Include(i => i.Category).Include(i => i.Producer);
+            var items = fe.Items.Include(i => i.Category).Include(i => i.Producer);
             return View(items.ToList());
         }
 
@@ -28,7 +28,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            Item item = fe.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -37,28 +37,29 @@ namespace FourSeasonsWebShop.Controllers
         }
 
         // Create
+       
         public ActionResult Create()
         {
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name");
-            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name");
+            ViewBag.CategoryId = new SelectList(fe.Categories, "CategoryId", "Name");
+            ViewBag.ProduceId = new SelectList(fe.Producers, "ProducerId", "Name");
             return View();
         }
 
         // POST: Create
-       
+     
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ItemId,CategoryId,ProduceId,Title,Price,ItemArtUrl")] Item item)
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(item);
-                db.SaveChanges();
+                fe.Items.Add(item);
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
-            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            ViewBag.CategoryId = new SelectList(fe.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(fe.Producers, "ProducerId", "Name", item.ProduceId);
             return View(item);
         }
 
@@ -69,13 +70,13 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            Item item = fe.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
-            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            ViewBag.CategoryId = new SelectList(fe.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(fe.Producers, "ProducerId", "Name", item.ProduceId);
             return View(item);
         }
 
@@ -86,12 +87,12 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                fe.Entry(item).State = EntityState.Modified;
+                fe.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "CategoryId", "Name", item.CategoryId);
-            ViewBag.ProduceId = new SelectList(db.Producers, "ProducerId", "Name", item.ProduceId);
+            ViewBag.CategoryId = new SelectList(fe.Categories, "CategoryId", "Name", item.CategoryId);
+            ViewBag.ProduceId = new SelectList(fe.Producers, "ProducerId", "Name", item.ProduceId);
             return View(item);
         }
 
@@ -102,7 +103,7 @@ namespace FourSeasonsWebShop.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            Item item = fe.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -115,9 +116,9 @@ namespace FourSeasonsWebShop.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
-            db.SaveChanges();
+            Item item = fe.Items.Find(id);
+            fe.Items.Remove(item);
+            fe.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -125,7 +126,7 @@ namespace FourSeasonsWebShop.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                fe.Dispose();
             }
             base.Dispose(disposing);
         }

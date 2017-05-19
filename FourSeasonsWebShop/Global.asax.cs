@@ -20,7 +20,6 @@ namespace FourSeasonsWebShop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //ModelBinders.Binders.Add(typeof(Cart), new CartModelBinder()); 
         }
     }
 }
